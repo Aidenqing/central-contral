@@ -1,0 +1,969 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+	<head>
+		<meta charset="utf-8" />
+		<title>中控系统</title>
+		<meta name="keywords" content="中控系统" />
+		<meta name="description" content="中控系统" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<!-- basic styles -->
+		<link href="assets/css/bootstrap.min.css" rel="stylesheet" />
+		<link rel="stylesheet" href="assets/css/font-awesome.min.css" />
+
+		<!-- 	<link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Open+Sans:400,300" />
+
+	ace styles -->
+
+		<link rel="stylesheet" href="assets/css/ace.min.css" />
+
+		<link rel="stylesheet" type="text/css" href="assets/css/style.css" />
+
+		<style type="text/css">
+			select {
+				height: 43px;
+				background-color: #FEF4E8;
+				font-size: 26px;
+				border: 0;
+				color: #e77817;
+			}
+			
+			select>option {
+				font-size: 24px;
+				color: #D6D6D6;
+			}
+			/*		select>option:focus,*/
+			
+			select>option:hover {
+				background-color: #D6D6D6!important;
+			}
+			
+			#option1:hover {
+				background-color: #D6D6D6!important;
+			}
+			
+			select.form-control {
+				background-color: #FEF4E8;
+				height: 43px;
+				font-size: 26px;
+				border: 0;
+				color: #e77817;
+			}
+			
+			#form-select>option {
+				background-color: white;
+			}
+			
+			.modal-name {
+				font-size: 26px;
+				position: relative;
+				padding-left: 24px;
+				color: #E77817;
+			}
+			
+			.modal-name li {
+				font-size: 24px;
+				padding-left: 24px;
+				color: #49494a;
+			}
+			
+			.modal-name li:hover {
+				background-color: #D6D6D6;
+			}
+			
+			.modal-name .dropdown-menu {
+				border-radius: 8px!important;
+				margin: 0!important;
+				padding: 0!important;
+			}
+			
+			.modal-content {
+				width: 883px;
+				border-radius: 10px !important;
+			}
+			
+			.modal-header {
+				border-top-left-radius: 15px;
+				border-top-right-radius: 15px;
+			}
+			
+			.modal-footer {
+				border-bottom-left-radius: 15px;
+				border-bottom-right-radius: 15px;
+			}
+			
+			tr {
+				background-color: #f9f9f9;
+			}
+			
+			.content-row {
+				opacity: 1;
+			}
+			
+			.modal {
+			    overflow-x: hidden;
+    overflow-y: scroll;
+			}
+			
+			.top-item>img {
+				padding-left: 10px;
+			}
+			
+			.top-item>span {
+				padding-left: 0px;
+			}
+			
+			.span-right {
+				padding-right: 14px;
+			}
+			.led-style{
+				width: 38px;
+				height: 38px;
+				display: inline-block;
+				margin: 0 25px;
+				    border: 2px solid #c3c3c3;
+    border-radius: 9px;
+    margin-left: 33px;
+			}
+			.led-style-active{
+				  border: 2px solid #e77817;
+			}
+			.led-box{
+				position: absolute;
+top: 690px;
+    left: 123px;
+    color: #e77817;
+			}
+			.led-sbox{
+				display: inline-block;
+			}
+		</style>
+	</head>
+
+	<body>
+		<div class="navbar navbar-default" id="navbar">
+			<!--<script type="text/javascript">
+				try{ace.settings.check('navbar' , 'fixed')}catch(e){}
+			</script>-->
+
+			<div class="navbar-container" id="navbar-container">
+				<div class="navbar-header pull-left">
+					<a href="#" class="navbar-brand">
+						<small>
+							<img src="res/img/w-logo.png"/>
+							<span>中控系统</span>
+						</small>
+					</a>
+					<!-- /.brand -->
+				</div>
+				<!-- /.navbar-header -->
+
+				<div class="navbar-header pull-right user-setting" role="navigation">
+					<ul class="nav ace-nav">
+						<li class="grey">
+							<a onclick="closeWindow()" class="dropdown-toggle" href="#">
+								<img src="res/img/setting.png" class="nav-img setting-img" />
+								<!--<span class="badge badge-grey">4</span>-->
+							</a>
+
+							<ul class="pull-right dropdown-navbar dropdown-menu dropdown-caret dropdown-close dropdown-position">
+								<div class="notify-arrow notify-arrow-green"></div>
+								<li>
+									<a href="index.html#">
+										<span class="photo"><img alt="avatar" src="res/img/w-open.png"></span>
+										<span class="subject"></span>
+										<span class="from" style="padding-left: 10px;">开启设备</span>
+
+									</a>
+								</li>
+								<li>
+									<a href="pro-index.html">
+										<span class="photo"><img alt="avatar" src="res/img/w_close.png"></span>
+										<span class="subject"></span>
+										<span class="from" style="padding-left: 10px;">关闭设备</span>
+
+									</a>
+								</li>
+								<li>
+									<a href="index.html#">
+										<span class="photo"><img alt="avatar" src="res/img/w-restart.png"></span>
+										<span class="subject"></span>
+										<span class="from" style="padding-left: 10px;">重启设备</span>
+
+									</a>
+								</li>
+								<li>
+									<a href="index.html#">
+										<span class="photo"><img alt="avatar" src="res/img/w-exit.png"></span>
+										<span class="subject"></span>
+										<span class="from" style="padding-left: 10px;">退出设备</span>
+
+									</a>
+								</li>
+							</ul>
+						</li>
+
+						<li class="grey">
+							<a data-toggle="dropdown" class="dropdown-toggle" href="#">
+								<img src="res/img/admin.png" class="nav-img" />
+							</a>
+						</li>
+
+					</ul>
+					<!-- /.ace-nav -->
+				</div>
+				<!-- /.navbar-header -->
+			</div>
+			<!-- /.container -->
+		</div>
+
+		<div class="main-container" id="main-container">
+
+			<div class="main-container-inner">
+				<div style="position: absolute;">
+					<div class="copy_right">
+						【注】</br>在简易模式状态下，预设</br>参数可以直接使用，如要</br>更换，点击加选更多设置
+					</div>
+					<div class="right-bottm">
+						Copyright &copy; 2016.广州嘉影 版权</br>所有&copy; 广州嘉影</br>粤IC备11047519号-1
+					</div>
+				</div>
+
+				<div class="sidebar" id="sidebar">
+
+				<div class="simple" onclick="goIndex()">
+							简易模式
+						</div>
+						<div class="pro" onclick="goProIndex()">
+							专家模式
+						</div>
+
+				</div>
+
+				<div class="main-content">
+					<div class="page-content all-margin">
+						<!--<div class="page-header">
+							<h1>
+								控制台
+								<small>
+									<i class="icon-double-angle-right"></i>
+									 查看
+								</small>
+							</h1>
+						</div>-->
+						<!--
+                    	作者：wu18227660504@gmail.com
+                    	时间：2018-04-13
+                    	描述： 预设标签
+                    -->
+						<div class="row" style="height: 100px;">
+							<div class="col-md-12">
+								<!--	<div class="panel panel-default border-line">-->
+								<div class="row" style="margin-top: 21px;">
+									<div class="col-md-11 flex-row simple-add">
+										
+											<img src="res/img/yushefanhui.png" class="gou" onclick="goBack()"/>
+										
+
+										<span style="margin-left: 101px;">预设名：</span>
+										<div class="inline" style="width: 340px;">
+											<input type="text" maxlength="12" class="form-search" placeholder="请输入预设名称" style="width: 95%;height: 100%; text-indent: 15px;   font-size: 22px;" id="preset-name">
+										</div>
+										<!--<span style="padding-left: 40px;">封面：</span>
+										<img src="res/img/shangchuan.png" />-->
+										<span style="width: 80px;margin-left: 75px;">标签：</span>
+										<span class="c-span c-span-active" data-value='1' id="show-btn">参展</span>
+										<span class="c-span" data-value="0" id="ligth-btn">灯光</span>
+									
+									</div>
+<div class="col-md-1">
+		<img src="res/img/xuanzhong.png" id="add-preset" class="gou" />
+</div>
+								</div>
+
+							</div>
+
+						</div>
+						<div class="row" style="margin-top: 37px;">
+
+							<div class="col-md-6 ">
+								<div class="panel panel-default border-line choose-item" style="overflow-x: hidden;overflow-y: auto;height: 760px;margin-bottom: 0;">
+									<div class="row">
+										<div class="col-md-12 content-head">
+											<div class="top-item">
+
+												<span>添加内容 </span>
+												<img src="res/img/jiaxuan.png" id="add-content">
+												<span class="pull-right span-right">|    <span style="color: #e77817;font-size: 22px;">Add Content</span></span>
+											</div>
+										</div>
+									</div>
+
+									<div class="row">
+										<div class="col-md-12">
+											<h2 class="page-head-line" style="border-bottom: 2px solid #a5a4a5;margin: 0px 20px 10px 10px;"></h2>
+										</div>
+									</div>
+
+									<div id="add-content-item">
+										<!--<div class="row content-row">
+											<div class="col-md-6 ">
+												<div class="inline add-item" data-open="0" data-type='add-content'>日照-风光-360全景-01</div>
+											</div>
+											<div class="col-md-6 ">
+												<div class="inline add-item" data-open="0" data-type='add-content'>日照-风光-360全景-01</div>
+											</div>
+
+										</div>-->
+
+									</div>
+									<div id="mask" style="display: none;">
+
+									</div>
+								</div>
+							</div>
+							<!--
+                            	作者：offline
+                            	时间：2018-04-17
+                            	描述：volume preset
+                            -->
+							<div class="col-md-6 ">
+								<div class="row">
+									<div class="col-md-12">
+										<div class="panel panel-default border-line choose-item" style="overflow-x: hidden;overflow-y: auto;height: 760px; position: relative;">
+											<div class="row">
+												<div class="col-md-12">
+													<div class="top-item">
+
+														<span>添加灯光</span>
+														<img src="res/img/jiaxuan.png" id="add-light">
+														<span class="pull-right span-right" style="padding-right: 30px;">|    <span style="color: #e77817;font-size: 22px;">Add Light</span></span>
+													</div>
+												</div>
+											</div>
+											<div class="row">
+												<div class="col-md-12">
+													<h2 class="page-head-line" style="border-bottom: 2px solid #a5a4a5;margin: 0px 20px 10px 10px;"></h2>
+												</div>
+											</div>
+											<div id="add-light-item">
+
+												<!--<div class="row">
+												<div class="col-md-6 ">
+
+													<div class="inline add-item-light" data-open='0' data-type='light-sign'><img src="res/img/qianmhui.png" style="padding-right: 10px ;" /><span>功能1区</span></div>
+												</div>
+												<div class="col-md-6 ">
+
+													<div class="inline add-item-light" data-open='0' data-type='light-size'><img src="res/img/deng.png" style="padding-right: 10px ;" /><span>功能1区</span></div>
+												</div>
+
+											</div>-->
+											</div>
+<div class="led-box">
+<span style="position:absolute;left: -83px; ">LED颜色</span>
+	<div class="led-sbox">
+		<div class="led-style led-style-active" style="background: rgba(246, 254, 255, 1);">
+		
+	</div>
+	</div>
+		<div class="led-sbox">
+	<div class="led-style" style="background: rgba(126, 206, 244, 1);">
+		
+	</div>
+	</div>
+		<div class="led-sbox">
+	<div class="led-style" style="background: rgba(31, 223, 225, 1);">
+		
+	</div>
+	</div>
+		<div class="led-sbox">
+	<div class="led-style" style="background: rgba(234, 44, 59, 1);">
+		
+	</div>
+	</div>
+		<div class="led-sbox">
+	<div class="led-style" style="background: rgba(224, 46, 172, 1);">
+		
+	</div>
+	</div>
+</div>
+										</div>
+
+									</div>
+									<div class="col-md-12" hidden="true">
+										<div class="panel panel-default border-line choose-item" style="overflow-x: hidden;overflow-y: auto;height: 270px;margin-bottom: 0;">
+											<div class="row">
+												<div class="col-md-12">
+													<div class="top-item">
+
+														<span>音量预设</span>
+														<img src="res/img/jiaxuan.png" id="add-volume">
+														<span class="pull-right span-right">|    <span style="color: #e77817;font-size: 22px;">Volume Preset</span></span>
+													</div>
+												</div>
+											</div>
+											<div class="row">
+												<div class="col-md-12">
+													<h2 class="page-head-line" style="border-bottom: 2px solid #a5a4a5;margin: 0px 20px 10px 10px;"></h2>
+												</div>
+											</div>
+											<div id="add-volume-item">
+
+											</div>
+
+										</div>
+
+									</div>
+
+								</div>
+							</div>
+
+						</div>
+
+					</div>
+					<!-- /.page-content -->
+				</div>
+				<!-- /.main-content -->
+
+			</div>
+			<!-- /.main-container-inner -->
+			<!--
+	作者：offline
+	时间：2018-04-17
+	描述：弹框 all
+-->
+
+			<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+				<div class="modal-dialog">
+					<div class="modal-content">
+						<div class="modal-header">
+							<div class="modal-name">
+
+								<div data-toggle="dropdown" class="dropdown-toggle">
+
+									<span id="modal-add-content" style="vertical-align: middle;"></span>
+									<img src="res/img/zhankaigengduo.png" style="ppadding: 10px;" />
+								</div>
+								<ul class="pull-left dropdown-menu" id="content-add-ul">
+
+								</ul>
+							</div>
+						</div>
+						<div class="modal-body">
+							<div class="row">
+								<div class="col-xs-12">
+									<div class="table-responsive">
+										<table id="sample-table-1" class="table table-striped table-bordered table-hover" style="border-collapse: separate;border-spacing: 0px 10px;">
+
+											<tbody id="add-tbody">
+												<!--<tr>
+													<td>
+														<div class="inline">
+															日照旅游-全景362-2
+														</div>
+													</td>
+													<td class="center">
+														<label>
+																<input type="checkbox" class="ace">
+																<span class="lbl"></span>
+															</label>
+													</td>
+
+												</tr>-->
+											</tbody>
+										</table>
+									</div>
+									<!-- /.table-responsive -->
+								</div>
+								<!-- /span -->
+							</div>
+
+						</div>
+						<div class="modal-footer">
+
+							<div class="table-div" style="" id="modal-add">添加</div>
+						</div>
+					</div>
+					<!-- /.modal-content -->
+				</div>
+				<!-- /.modal -->
+			</div>
+
+			<div class="modal fade" id="myModal2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+				<div class="modal-dialog">
+					<div class="modal-content">
+						<div class="modal-header">
+
+						</div>
+						<div class="modal-body">
+							<div class="row">
+								<div class="col-xs-12">
+									<div class="table-responsive">
+										<table id="sample-table-1" class="table table-striped table-bordered table-hover" style="border-collapse: separate;border-spacing: 0px 10px;">
+
+											<tbody id="add-tbody-light">
+												<!--<tr>
+													<td>
+														<div class="inline">
+															日照旅游-全景362-2
+														</div>
+													</td>
+													<td class="center">
+														<label>
+																<input type="checkbox" class="ace">
+																<span class="lbl"></span>
+															</label>
+													</td>
+
+												</tr>-->
+											</tbody>
+										</table>
+									</div>
+									<!-- /.table-responsive -->
+								</div>
+								<!-- /span -->
+							</div>
+
+						</div>
+						<div class="modal-footer">
+
+							<div class="table-div" style="" id="modal-add2">添加</div>
+						</div>
+					</div>
+					<!-- /.modal-content -->
+				</div>
+				<!-- /.modal -->
+			</div>
+			<div class="modal fade" id="myModal3" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+				<div class="modal-dialog">
+					<div class="modal-content">
+						<div class="modal-header">
+
+						</div>
+						<div class="modal-body">
+							<div class="row">
+								<div class="col-xs-12">
+									<div class="table-responsive">
+										<table id="sample-table-1" class="table table-striped table-bordered table-hover" style="border-collapse: separate;border-spacing: 0px 10px;">
+
+											<tbody id="add-tbody-volume">
+												<!--<tr>
+													<td>
+														<div class="inline">
+															日照旅游-全景362-2
+														</div>
+													</td>
+													<td class="center">
+														<label>
+																<input type="checkbox" class="ace">
+																<span class="lbl"></span>
+															</label>
+													</td>
+
+												</tr>-->
+											</tbody>
+										</table>
+									</div>
+									<!-- /.table-responsive -->
+								</div>
+								<!-- /span -->
+							</div>
+
+						</div>
+						<div class="modal-footer">
+
+							<div class="table-div" style="" id="modal-add3">添加</div>
+						</div>
+					</div>
+					<!-- /.modal-content -->
+				</div>
+				<!-- /.modal -->
+			</div>
+
+			<!--<a href="#" id="btn-scroll-up" class="btn-scroll-up btn btn-sm btn-inverse">
+				<i class="icon-double-angle-up icon-only bigger-110"></i>
+			</a>-->
+		</div>
+		<!-- /.main-container -->
+
+		<!-- basic scripts -->
+
+		<!--[if !IE]> -->
+
+		<script type="text/javascript">
+			window.jQuery || document.write("<script src='assets/js/jquery-2.0.3.min.js'>" + "<" + "script>");
+		</script>
+
+		<script type="text/javascript">
+			if("ontouchend" in document) document.write("<script src='assets/js/jquery.mobile.custom.min.js'>" + "<" + "script>");
+		</script>
+		<script src="assets/js/bootstrap.min.js"></script>
+
+		<script src="assets/js/jquery-ui-1.10.3.custom.min.js"></script>
+		<script src="assets/js/jquery.ui.touch-punch.min.js"></script>
+		<script src="assets/js/jquery.cookie.js" type="text/javascript" charset="utf-8"></script>
+		<script src="assets/js/main.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+			addContents = [];
+			addLights = [];
+			addVolume = [];
+			addVolumes = [];
+			//	$.cookie('presetList', presetList);
+			$("#add-content-item").empty();
+			testWebSocket();
+			getCompnameListCallback();
+			getAllContenttypeCallback();
+			getLightNamelistCallback();
+			let index=getUrlParam("fromId");
+					console.log(index)
+					if(index==0){
+						$(".pro").addClass("none-active")
+					}else{
+						$(".simple").addClass("none-active")
+					}
+		</script>
+		<script type="text/javascript">
+			var ImgPath = "res/img/";
+			/*	let addContents = [];
+				let addLights = [];
+				let addVolume = [];
+				let addVolumes = [];*/
+				
+			
+			//内容添加
+			var presetLable = "参展";
+
+			
+			$("#add-content").on('click', function(e) {
+
+				$("#myModal").modal("show");
+
+			});
+			$("#add-light").on('click', function(e) {
+
+				$("#myModal2").modal("show");
+
+			});
+			$("#add-volume").on('click', function(e) {
+
+				$("#myModal3").modal("show");
+
+			});
+
+			function renderContent(list) {
+				$("#add-content-item").empty();
+				let len = Math.floor(list.length / 2);
+				let html = "";
+				for(let i = 0; i < len; i++) {
+					html += "<div class=\"row content-row\">";
+					html += "<div class=\"col-md-6 \">";
+					html += "<div class=\"inline add-item\" data-open=\"0\" data-type=\'add-content\'>" + list[i * 2] + "</div>";
+					html += "</div>";
+					html += "<div class=\"col-md-6 \">";
+					html += "<div class=\"inline add-item\" data-open=\"0\" data-type=\'add-content\'>" + list[i * 2 + 1] + "</div>";
+					html += "</div>";
+					html += "</div>";
+				}
+				if(list.length % 2 != 0) {
+					html += "<div class=\"row content-row\">";
+					html += "<div class=\"col-md-6 \">";
+					html += "<div class=\"inline add-item\" data-open=\"0\" data-type=\'add-content\'>" + (list[list.length - 1].length>20?(list[list.length - 1].substr(0,32)+'...'):(list[list.length - 1])) + "</div>";
+					html += "</div>";
+					html += "</div>";
+				}
+				$("#add-content-item").append(html);
+				//clickContent();
+			}
+
+			function renderVolume(list) {
+
+				$("#add-volume-item").empty();
+				let len = Math.floor(list.length / 2);
+				let html = "";
+				for(let i = 0; i < len; i++) {
+					html += "<div class=\"row content-row\">";
+					html += "<div class=\"col-md-6 \">";
+					html += "<div class=\"inline add-item-volume\" data-open=\'0\' data-type=\"voice\"><img src=\"res/img/b-c-voice.png\" style=\"padding-right: 10px ;\" /><span>" + list[i * 2] + "</span></div>";
+					html += "</div>";
+					html += "<div class=\"col-md-6 \">";
+					html += "<div class=\"inline add-item-volume\" data-open=\'0\' data-type=\"voice\"><img src=\"res/img/b-c-voice.png\" style=\"padding-right: 10px ;\" /><span>" + list[i * 2] + "</span></div>";
+					html += "</div>";
+					html += "</div>";
+				}
+				if(list.length % 2 != 0) {
+					html += "<div class=\"row content-row\">";
+					html += "<div class=\"col-md-6 \">";
+					html += "<div class=\"inline add-item-volume\" data-open=\'0\' data-type=\"voice\"><img src=\"res/img/b-c-voice.png\" style=\"padding-right: 10px ;\" /><span>" + list[list.length - 1] + "</span></div>";
+					html += "</div>";
+					html += "</div>";
+				}
+				$("#add-volume-item").append(html);
+				//	clickVolume();
+			}
+
+			function renderLight(list) {
+
+				$("#add-light-item").empty();
+				let len = Math.floor(list.length / 2);
+				let html = "";
+				for(let i = 0; i < len; i++) {
+					html += "<div class=\"row content-row\">";
+					html += "<div class=\"col-md-6 \">";
+					html += " <div class=\"inline add-item-light\" data-open=\'0\' data-type=\'light-sign\'><img src=\"res/img/qianmhui.png\" style=\"padding-right: 10px ;\" /><span>" + list[i * 2] + "</span></div>";
+					html += "</div>";
+					html += "<div class=\"col-md-6 \">";
+					html += "<div class=\"inline add-item-light\" data-open=\'0\' data-type=\'light-size\'><img src=\"res/img/deng.png\" style=\"padding-right: 10px ;\" /><span>" + list[i * 2 + 1] + "</span></div>";
+					html += "</div>";
+					html += "</div>";
+				}
+				if(list.length % 2 != 0) {
+					html += "<div class=\"row content-row\">";
+					html += "<div class=\"col-md-6 \">";
+					html += " <div class=\"inline add-item-light\" data-open=\'0\' data-type=\'light-sign\'><img src=\"res/img/qianmhui.png\" style=\"padding-right: 10px ;\" /><span>" + list[list.length - 1] + "</span></div>";
+
+					html += "</div>";
+					html += "</div>";
+				}
+				$("#add-light-item").append(html);
+				//clickLight();
+			}
+			//model添加内容
+			$("#modal-add").on('click', function(e) {
+				//console.log(e.currentTarget.id);
+				let add = [];
+				$("#add-tbody .ace").each(function() {
+					console.log()
+					if($(this).is(':checked')) {
+						let contentVal = $(this).data("value");
+						if(addContents.indexOf(contentVal) < 0) {
+
+							addContents.push(contentVal);
+						}
+					}
+
+				});
+
+				console.log(addContents);
+				renderContent(addContents);
+				$("#myModal").modal("hide")
+
+			});
+			//添加灯光
+			$("#modal-add2").on('click', function(e) {
+				//console.log(e.currentTarget.id);
+
+				$("#add-tbody-light .ace").each(function() {
+					console.log($(this).is(':checked'))
+					if($(this).is(':checked')) {
+						let lightVal = $(this).data("value");
+						if(addLights.indexOf(lightVal) < 0) {
+
+							addLights.push(lightVal);
+						}
+					}
+
+				});
+				renderLight(addLights);
+				$("#myModal2").modal("hide")
+			});
+			
+			
+			
+			//添加声音
+			$("#modal-add3").on('click', function(e) {
+				//console.log(e.currentTarget.id);
+
+				$("#add-tbody-volume .ace").each(function() {
+
+					if($(this).is(':checked')) {
+						let ContentType = $(this).data("value");
+						if(addVolumes.indexOf(ContentType) < 0) {
+
+							addVolumes.push(ContentType);
+							addVolume.push({
+								"ContentType": $(this).data("value"),
+								"VolumeValue": 20
+							});
+						}
+					}
+
+				});
+				console.log(addContents);
+				renderVolume(addVolumes);
+				$("#myModal3").modal("hide")
+			});
+
+			$("#add-preset").on('click', function(e) {
+let str=colorRGB2Hex($(".led-style-active").css('background-color'));
+				let name = $("#preset-name").val();
+				if(name == "") {
+					alert("请输入预设名称");
+					return;
+				}
+
+				addLableToCookie(name)
+
+				//	$.cookie('presetList',presetList.join(','));
+				//	$.cookie('presetList', decode(presetList));
+console.log(presetLable);
+				addNewPresetDataCallback(presetLable, name, str, addLights, addContents, addVolume)
+//goBack();
+				
+			});
+
+			function addLableToCookie(name) {
+				presetList = $.cookie('presetList');
+				$.cookie('presetList', null);
+				if(presetList == '' || presetList == undefined) {
+					$.cookie('presetList', name);
+				} else {
+					$.cookie('presetList', presetList + "," + name);
+				}
+				if(	presetLable == "灯光"){
+					setIndex("Dindex");
+				}else{
+					setIndex("Cindex");
+				}
+			}
+			//标签点击
+
+			$("#ligth-btn").on('click', function(e) {
+				//console.log(e.currentTarget.id);
+				$("#mask").show();
+				$(this).removeClass('c-span-active');
+				$(this).addClass('c-span-active');
+				$('#show-btn').removeClass('c-span-active');
+				presetLable = "灯光";
+			});
+
+			$("#show-btn").on('click', function(e) {
+				$("#mask").hide();
+				$('#ligth-btn').removeClass('c-span-active');
+				$(this).removeClass('c-span-active');
+				$(this).addClass('c-span-active');
+				console.log($(this).data("value"))
+				presetLable = "参展";
+
+			});
+
+$(".led-style").on('click', function(e) {
+	
+				$('.led-style').removeClass('led-style-active');
+			
+				$(this).addClass('led-style-active');
+		
+
+			});
+			//				内容去点击
+			function clickContent() {
+				$(".add-item").on('click', function(e) {
+					let opacity = $('.content-row').css('opacity');
+					console.log(opacity)
+					//				if(!opacity) return;
+					if(opacity == 0.2) return;
+					let that = $(this);
+					let open = that.data('open');
+					let type = that.data('type');
+					if(open == 1) {
+						that.removeClass('add-item-active');
+						that.data('open', '0');
+					} else {
+						that.addClass('add-item-active');
+						that.data('open', '1');
+					}
+				});
+			}
+			//灯光点击
+			function clickLight() {
+				$(".add-item-light").on('click', function(e) {
+					changeLight(this, 'add-item-light-active');
+				});
+			}
+			//声音点击
+			function clickVolume() {
+				$(".add-item-volume").on('click', function(e) {
+					changeLight(this, 'add-item-volume-active');
+				});
+			}
+
+			function changeLight(obj, str) {
+				let that = $(obj);
+				let type = that.data('open');
+				let strs = that.data('type');
+				console.log(strs);
+				let url = ImgPath + getImgUrl(type, strs);
+
+				if(type == 0) {
+					that.addClass(str);
+					that.data('open', '1');
+				} else {
+					that.removeClass(str);
+					that.data('open', "0");
+				}
+				console.log(that.children('img'));
+				that.children('img').attr('src', url)
+			}
+
+			function getImgUrl(type, strs) {
+				let url = "";
+				console.log(strs);
+				console.log(type);
+				if(type == 0) {
+					switch(strs) {
+						case "light-sign":
+							url = "qianm.png";
+							break;
+						case "light-size":
+							url = "dengcheng.png";
+							break;
+						case "light-floor":
+							url = "loudaocheng.png";
+							break;
+						case "light-led":
+							url = "ledcheng.png";
+							break;
+						case "light-lamp":
+							url = "dnegdaicheng.png";
+							break;
+						case "voice":
+							url = "c-voice.png";
+							break;
+
+					}
+				} else {
+					switch(strs) {
+						case "light-sign":
+							url = "qianmhui.png";
+							break;
+						case "light-size":
+							url = "deng.png";
+							break;
+						case "light-floor":
+							url = "loudao.png";
+							break;
+						case "light-led":
+							url = "led.png";
+							break;
+						case "light-lamp":
+							url = "dnegdai.png";
+							break;
+						case "voice":
+							url = "b-c-voice.png";
+							break;
+					}
+				}
+				return url;
+			}
+
+			$(".user-img-div").on('click', function(e) {
+				//console.log(e.currentTarget.id);
+				$(".user-img-div").removeClass("nav-active");
+				$(this).addClass("nav-active");
+
+			});
+		</script>
+
+	</body>
+
+</html>

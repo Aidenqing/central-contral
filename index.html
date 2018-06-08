@@ -1,0 +1,407 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+	<head>
+		<meta charset="utf-8" />
+		<title>中控系统</title>
+		<meta name="keywords" content="中控系统" />
+		<meta name="description" content="中控系统" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<!-- basic styles -->
+		<link href="assets/css/bootstrap.min.css" rel="stylesheet" />
+		<link rel="stylesheet" href="assets/css/font-awesome.min.css" />
+
+		<!--	<link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Open+Sans:400,300" />
+
+	 ace styles -->
+
+		<link rel="stylesheet" href="assets/css/ace.min.css" />
+
+		<link rel="stylesheet" type="text/css" href="assets/css/style.css" />
+
+	</head>
+
+	<body>
+		<div class="navbar navbar-default" id="navbar">
+			<!--<script type="text/javascript">
+				try{ace.settings.check('navbar' , 'fixed')}catch(e){}
+			</script>-->
+
+			<div class="navbar-container" id="navbar-container">
+				<div class="navbar-header pull-left">
+					<a href="#" class="navbar-brand">
+						<small>
+							<img src="res/img/w-logo.png" />
+							<span>中控系统</span>
+						</small>
+					</a>
+					<!-- /.brand -->
+				</div>
+				<!-- /.navbar-header -->
+
+				<div class="navbar-header pull-right user-setting" role="navigation">
+					<ul class="nav ace-nav">
+						<li class="grey">
+							<a onclick="closeWindow()" class="dropdown-toggle" href="#">
+								<img src="res/img/setting.png" class="nav-img setting-img" />
+								<!--<span class="badge badge-grey">4</span>-->
+							</a>
+
+							<ul class="pull-right dropdown-navbar dropdown-menu dropdown-caret dropdown-close dropdown-position">
+								<div class="notify-arrow notify-arrow-green"></div>
+								<li>
+									<a href="#">
+										<span class="photo"><img alt="avatar" src="res/img/w-open.png"></span>
+										<span class="subject"></span>
+										<span class="from" style="padding-left: 10px;">开启设备</span>
+
+									</a>
+								</li>
+								<li>
+									<a href="#">
+										<span class="photo"><img alt="avatar" src="res/img/w_close.png"></span>
+										<span class="subject"></span>
+										<span class="from" style="padding-left: 10px;">关闭设备</span>
+
+									</a>
+								</li>
+								<li>
+									<a href="#">
+										<span class="photo"><img alt="avatar" src="res/img/w-restart.png"></span>
+										<span class="subject"></span>
+										<span class="from" style="padding-left: 10px;">重启设备</span>
+
+									</a>
+								</li>
+								<li>
+									<a href="#">
+										<span class="photo"><img alt="avatar" src="res/img/w-exit.png"></span>
+										<span class="subject"></span>
+										<span class="from" style="padding-left: 10px;">退出设备</span>
+
+									</a>
+								</li>
+							</ul>
+						</li>
+
+						<li class="grey">
+							<a data-toggle="dropdown" class="dropdown-toggle" href="#">
+								<img src="res/img/admin.png" class="nav-img" />
+							</a>
+						</li>
+
+					</ul>
+					<!-- /.ace-nav -->
+				</div>
+				<!-- /.navbar-header -->
+			</div>
+			<!-- /.container -->
+		</div>
+
+		<div class="main-container" id="main-container">
+
+			<div class="main-container-inner">
+				<div style="position: absolute;">
+					<div class="copy_right">
+						【注】</br>在简易模式状态下，预设</br>参数可以直接使用，如要</br>更换，点击加选更多设置
+					</div>
+					<div class="right-bottm">
+						Copyright &copy; 2016.广州嘉影 版权</br>所有&copy; 广州嘉影</br>粤IC备11047519号-1
+					</div>
+				</div>
+
+				<div class="sidebar" id="sidebar">
+
+			<div class="simple" onclick="goIndex()">
+							简易模式
+						</div>
+						<div class="pro none-active" onclick="goProIndex()">
+							专家模式
+						</div>
+				</div>
+
+				<div class="main-content">
+					<div class="page-content all-margin">
+						<!--<div class="page-header">
+							<h1>
+								控制台
+								<small>
+									<i class="icon-double-angle-right"></i>
+									 查看
+								</small>
+							</h1>
+						</div>-->
+						<!--
+                    	作者：wu18227660504@gmail.com
+                    	时间：2018-04-13
+                    	描述： 预设标签
+                    -->
+						<div class="row" style="height: 100px;">
+							<div class="col-md-12 ">
+								<!--	<div class="panel panel-default border-line">-->
+								<div class="row top-lable">
+									<div class="col-md-11 border-line flex-row" style="border-radius: 45px; height: 60px;" id="content-preset">
+
+								
+									</div>
+									<div class="col-md-1">
+										<a href="simple-add.html?fromId=0">
+											<img src="res/img/add.png" class="image-responsive center-block add-png"  />
+										</a>
+									</div>
+								</div>
+							</div>
+
+						</div>
+						<div class="row">
+
+							<div class="col-md-12 ">
+								<div class="panel panel-default border-line choose-item">
+									<div class="row">
+										<div class="col-md-12">
+											<div class="top-item">
+												<img src="res/img/logo.png" id="getAllPresetNameWithLabel" />
+												<span>参展预设 </span>
+												<span class="pull-right" style="padding-right: 30px;">|    <span style="color: #e77817;font-size: 22px;">On-demand Exhibition</span></span>
+											</div>
+										</div>
+									</div>
+									<div class="row">
+										<div class="col-md-12">
+											<h2 class="page-head-line" style="border-bottom: 2px solid #a5a4a5;margin: 0px 40px 0px 40px;"></h2>
+										</div>
+									</div>
+
+									<div class="row">
+										<div class="col-md-12" id="canzanList">
+
+										</div>
+
+									</div>
+
+								</div>
+							</div>
+
+						</div>
+						<!--
+                    	作者：wu18227660504@gmail.com
+                    	时间：2018-04-13
+                    	描述：第二個選項框
+                    -->
+						<div class="row choose-item">
+							<div class="col-md-12 ">
+								<div class="panel panel-default border-line choose-item">
+									<div class="row">
+										<div class="col-md-12">
+											<div class="top-item">
+												<img src="res/img/b_light.png" />
+												<span>灯光控制 </span>
+												<span class="pull-right" style="padding-right: 30px;">|    <span style="color: #e77817;font-size: 22px;padding-right: 99px;">Light Control&#x0020;&#x0020;&#x0020;&#x0020;</span></span>
+											</div>
+										</div>
+									</div>
+									<div class="row">
+										<div class="col-md-12">
+											<h2 class="page-head-line" style="border-bottom: 2px solid #a5a4a5;margin: 0px 40px 0px 40px;"></h2>
+										</div>
+									</div>
+
+									<div class="row">
+										<div class="col-md-12" id="lightList">
+<!--
+											<div id="carousel-example2" class="carousel slide" data-ride="carousel">
+												<div class="carousel-inner">
+													<div class="item active">
+														<div class="B_inner">
+
+															<div class="row" style="overflow:hidden;">
+
+																<div class="col-lg-2">
+																	<div class="lunbo-part-light" data-open="0"><img src="res/img/company.png" class="img-thumbnail lunbo_img" title="">
+																		<h3>探索·分享·改变</h3></div>
+																</div>
+																<div class="col-lg-2">
+																	<div class="lunbo-part-light" data-open="0"><img src="res/img/company.png" class="img-thumbnail lunbo_img" title="">
+																		<h3>探索·分享·改变</h3></div>
+																</div>
+																<div class="col-lg-2">
+																	<div class="lunbo-part-light" data-open="0"><img src="res/img/company.png" class="img-thumbnail lunbo_img" title="">
+																		<h3>探索·分享·改变</h3></div>
+																</div>
+																<div class="col-lg-2">
+																	<div class="lunbo-part-light" data-open="0"><img src="res/img/company.png" class="img-thumbnail lunbo_img" title="">
+																		<h3>探索·分享·改变</h3></div>
+																</div>
+																<div class="col-lg-2">
+																	<div class="lunbo-part-light" data-open="0"><img src="res/img/company.png" class="img-thumbnail lunbo_img" title="">
+																		<h3>探索·分享·改变</h3></div>
+																</div>
+																<div class="col-lg-2">
+																	<div class="lunbo-part-light" data-open="0"><img src="res/img/company.png" class="img-thumbnail lunbo_img" title="">
+																		<h3>探索·分享·改变</h3></div>
+																</div>
+															</div>
+														</div>
+
+													</div>
+													<div class="item">
+														<div class="B_inner">
+
+															<div class="row" style="overflow:hidden;">
+
+																<div class="col-lg-2">
+																	<div class="lunbo-part-light" data-open="0"><img src="res/img/company.png" class="img-thumbnail lunbo_img" title="">
+																		<h3>探索·分享·改变</h3></div>
+																</div>
+																<div class="col-lg-2">
+																	<div class="lunbo-part-light" data-open="0"><img src="res/img/company.png" class="img-thumbnail lunbo_img" title="">
+																		<h3>探索·分享·改变</h3></div>
+																</div>
+																<div class="col-lg-2">
+																	<div class="lunbo-part-light" data-open="0"><img src="res/img/company.png" class="img-thumbnail lunbo_img" title="">
+																		<h3>探索·分享·改变</h3></div>
+																</div>
+																<div class="col-lg-2">
+																	<div class="lunbo-part-light" data-open="0"><img src="res/img/company.png" class="img-thumbnail lunbo_img" title="">
+																		<h3>探索·分享·改变</h3></div>
+																</div>
+																<div class="col-lg-2">
+																	<div class="lunbo-part-light" data-open="0"><img src="res/img/company.png" class="img-thumbnail lunbo_img" title="">
+																		<h3>探索·分享·改变</h3></div>
+																</div>
+																<div class="col-lg-2">
+																	<div class="lunbo-part-light" data-open="0"><img src="res/img/company.png" class="img-thumbnail lunbo_img" title="">
+																		<h3>探索·分享·改变</h3></div>
+																</div>
+															</div>
+														</div>
+
+													</div>
+													<div class="item">
+														<div class="B_inner">
+
+															<div class="row" style="overflow:hidden;">
+
+																<div class="col-lg-2">
+																	<div class="lunbo-part-light" data-open="0"><img src="res/img/company.png" class="img-thumbnail lunbo_img" title="">
+																		<h3>探索·分享·改变</h3></div>
+																</div>
+																<div class="col-lg-2">
+																	<div class="lunbo-part-light" data-open="0"><img src="res/img/company.png" class="img-thumbnail lunbo_img" title="">
+																		<h3>探索·分享·改变</h3></div>
+																</div>
+																<div class="col-lg-2">
+																	<div class="lunbo-part-light" data-open="0"><img src="res/img/company.png" class="img-thumbnail lunbo_img" title="">
+																		<h3>探索·分享·改变</h3></div>
+																</div>
+																<div class="col-lg-2">
+																	<div class="lunbo-part-light" data-open="0"><img src="res/img/company.png" class="img-thumbnail lunbo_img" title="">
+																		<h3>探索·分享·改变</h3></div>
+																</div>
+																<div class="col-lg-2">
+																	<div class="lunbo-part-light" data-open="0"><img src="res/img/company.png" class="img-thumbnail lunbo_img" title="">
+																		<h3>探索·分享·改变</h3></div>
+																</div>
+																<div class="col-lg-2">
+																	<div class="lunbo-part-light" data-open="0"><img src="res/img/company.png" class="img-thumbnail lunbo_img" title="">
+																		<h3>探索·分享·改变</h3></div>
+																</div>
+															</div>
+														</div>
+
+													</div>
+												</div>
+												<div class="row">
+													
+													<ol class="carousel-indicators">
+														<li data-target="#carousel-example2" data-slide-to="0" class="active"></li>
+														<li data-target="#carousel-example2" data-slide-to="1"></li>
+														<li data-target="#carousel-example2" data-slide-to="2"></li>
+
+													</ol>
+												</div>
+										
+												<a class="left btn-move btn_l" href="#carousel-example2" data-slide="prev">
+													<img src="res/img/prev.png" />
+												</a>
+												<a class="right btn-move btn_r" href="#carousel-example2" data-slide="next">
+													<img src="res/img/next.png" />
+												</a>
+											</div>-->
+
+										</div>
+
+									</div>
+
+								</div>
+							</div>
+						</div>
+
+					</div>
+
+				</div>
+				<!-- /.page-content -->
+			</div>
+			<!-- /.main-content -->
+
+		</div>
+		<!-- /.main-container-inner -->
+<!--<div class="modal fade" id="myModal5" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+-->				<div id="tips-load" >
+							<div class="loading">
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+</div>
+</div>
+				
+				<!-- /.modal -->
+		<!--	</div>-->
+		<!--<a href="#" id="btn-scroll-up" class="btn-scroll-up btn btn-sm btn-inverse">
+				<i class="icon-double-angle-up icon-only bigger-110"></i>
+			</a>-->
+		</div>
+		<!-- /.main-container -->
+
+		<!-- basic scripts -->
+
+		<script type="text/javascript">
+			window.jQuery || document.write("<script src='assets/js/jquery-2.0.3.min.js'>" + "<" + "script>");
+		</script>
+
+		<script type="text/javascript">
+			if("ontouchend" in document) document.write("<script src='assets/js/jquery.mobile.custom.min.js'>" + "<" + "script>");
+		</script>
+		<script src="assets/js/bootstrap.min.js"></script>
+
+		<script src="assets/js/jquery-ui-1.10.3.custom.min.js"></script>
+		<script src="assets/js/jquery.ui.touch-punch.min.js"></script>
+					<script src="assets/js/jquery.cookie.js" type="text/javascript" charset="utf-8"></script>
+
+		<script src="assets/js/main.js" type="text/javascript" charset="utf-8"></script>
+
+		<script type="text/javascript">
+			$(function() {
+//				console.log(presetList)
+tipshide();
+		$("#myModal5").modal("show");
+				testWebSocket();
+				renderPresetList();
+				getAllPresetNameWithLabelCallback();
+			})
+			
+		
+		
+			$(".user-img-div").on('click', function(e) {
+				//console.log(e.currentTarget.id);
+				$(".user-img-div").removeClass("nav-active");
+				$(this).addClass("nav-active");
+
+			});
+		</script>
+
+	</body>
+
+</html>

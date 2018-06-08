@@ -1,0 +1,1257 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+	<head>
+		<meta charset="utf-8" />
+		<title>中控系统</title>
+		<meta name="keywords" content="中控系统" />
+		<meta name="description" content="中控系统" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<!-- basic styles -->
+		<link href="assets/css/bootstrap.min.css" rel="stylesheet" />
+		<link rel="stylesheet" href="assets/css/font-awesome.min.css" />
+
+		<!--[if IE 7]>
+		  <link rel="stylesheet" href="assets/css/font-awesome-ie7.min.css" />
+		<![endif]-->
+
+		<!-- page specific plugin styles -->
+
+		<!-- fonts -->
+		<link rel="stylesheet" href="assets/css/jquery-ui-1.10.3.full.min.css" />
+		
+		<!--<link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Open+Sans:400,300" />
+ ace styles -->
+
+		<link rel="stylesheet" href="assets/css/ace.min.css" />
+
+		<link rel="stylesheet" type="text/css" href="assets/css/style.css" />
+
+		<style type="text/css">
+			.corner {
+				position: absolute;
+				height: 0;
+				width: 0;
+				overflow: hidden;
+				border-bottom: solid 6px #e2e2e2;
+				border-right: solid 6px #FFFFFF;
+				top: 0;
+				right: 0;
+			}
+			
+			.col-md-2>span:first-child {
+				font-weight: bold;
+			}
+			
+			.table-bordered>thead>tr>th,
+			.table-bordered>tbody>tr>th,
+			.table-bordered>tfoot>tr>th,
+			.table-bordered>thead>tr>td,
+			.table-bordered>tbody>tr>td,
+			.table-bordered>tfoot>tr>td {
+				border: 0;
+				border-bottom: 0;
+			}
+			.span-right{
+				padding-right: 8px;
+			}
+			tr {
+				/*	border: 1px solid;*/
+				border-bottom: 2px solid #5555;
+			}
+			
+			.slopingside {
+				height: 0px;
+				border: 1px solid red;
+				width: 45px;
+				transform: rotate(125deg);
+				-o-transform: rotate(125deg);
+				-moz-transform: rotate(125deg);
+				-webkit-transform: rotate(125deg);
+			}
+			
+			.linear {
+				height: 0px;
+				border: 1px solid red;
+				margin-left: 30px;
+				margin-top: -10px;
+			}
+			
+			.tabbable,
+			.tab-content {
+				border: 0.1px solid #a5a4a5;
+				background: #f6f6f8;
+			}
+			
+			.add-content-head {
+				border-bottom: 2px solid #999;
+				padding-bottom: 38px;
+				margin-bottom: 10px;
+			}
+			
+			.lighting {
+				height: 520px;
+				overflow-x: hidden;
+				overflow-y: auto;
+			}
+			
+			.led-lighting {
+				height: 520px;
+				overflow-x: hidden;
+				overflow-y: auto;
+			}
+			
+			.decorative-light {
+				height: 206px;
+				overflow-x: hidden;
+				overflow-y: auto;
+			}
+			
+			#voice-mute {
+				width: 176px;
+			}
+			
+			#voice-reset {
+				width: 131px;
+			}
+			
+			.colorinput {
+    width:105px;
+    padding:25px 0 15px 0;
+}
+.colorslider {
+    padding:30px 25px 15px 20px;
+}
+.tableslider {
+ width: 96%;
+    margin-left: 10px;
+    border-collapse:collapse;
+}
+.pointer {
+    text-align:center;display:none;position:absolute;top:-14px;left:-2px;
+}
+.pointer div{
+    background-color:#ffffff;     
+    border:1px solid #aaaaaa;
+    height:24px;
+    width:40px;
+    padding:2px 4px;
+    position:absolute;
+    text-align:center;
+    top:-14px;
+    left:-4px;
+    color:#000000;   
+    border-radius:4px;
+    font:14px verdana;
+}
+.pointer div::selection {
+    color: #000000;
+    background: #ffffff;
+}
+.pointer span{
+       border-top: 6px solid #171c20;
+    border-left: 6px solid transparent;
+    border-right: 6px solid transparent;
+    content: "";
+    display: inline-block;
+    left: -3px;
+    position: absolute;
+    top: 9px;
+}
+@media screen and (max-width:600px) {
+    .colorinput {
+        padding:25px 0 0 0;
+    }
+    .colorslider {
+        width:100%;
+        padding:30px 25px 15px 20px;
+    }
+    
+}
+#choosed-color{
+
+    width: 200px;
+    margin: 0px auto;
+    padding: 20px;
+    text-align: center;
+   font-size: 22px;
+   border-radius: 8px;
+
+}
+.choose-color{
+	    margin: 5px 10px 30px 10px;
+	    font-size: 22px;
+
+}
+.caret{
+	position: absolute;
+	    top: 18px;
+    /* margin-left: 2px; */
+    left: 185px;
+}
+#dropdownMenu1{
+	width: 200px;
+	position: relative;
+}
+.led-sbox{
+	width: 60px;
+	height: 60px;
+	border-radius: 50%;
+
+}
+.led-box{display: inline-block;
+	border-radius: 50%;
+	margin-right: 40px;
+		border: 1px solid #FFFFFF;
+	}
+.led-box-select{
+	border: 1px solid #e77817;
+}
+.led-form{
+	margin-left: 82px;
+}
+		</style>
+	</head>
+
+	<body>
+		
+		
+		<div class="navbar navbar-default" id="navbar">
+			<!--<script type="text/javascript">
+				try{ace.settings.check('navbar' , 'fixed')}catch(e){}
+			</script>-->
+
+			<div class="navbar-container" id="navbar-container">
+				<div class="navbar-header pull-left">
+					<a href="#" class="navbar-brand">
+						<small>
+							<img src="res/img/w-logo.png" />
+							<span>中控系统</span>
+						</small>
+					</a>
+					<!-- /.brand -->
+				</div>
+				<!-- /.navbar-header -->
+
+				<div class="navbar-header pull-right user-setting" role="navigation">
+					<ul class="nav ace-nav">
+						<li class="grey">
+							<a onclick="closeWindow()" class="dropdown-toggle" href="#">
+								<img src="res/img/setting.png" class="nav-img setting-img" />
+								<!--<span class="badge badge-grey">4</span>-->
+							</a>
+
+							<ul class="pull-right dropdown-navbar dropdown-menu dropdown-caret dropdown-close dropdown-position">
+								<div class="notify-arrow notify-arrow-green"></div>
+								<li>
+									<a href="index.html#">
+										<span class="photo"><img alt="avatar" src="res/img/w-open.png"></span>
+										<span class="subject"></span>
+										<span class="from" style="padding-left: 10px;">开启设备</span>
+
+									</a>
+								</li>
+								<li>
+									<a href="index.html#">
+										<span class="photo"><img alt="avatar" src="res/img/w_close.png"></span>
+										<span class="subject"></span>
+										<span class="from" style="padding-left: 10px;">关闭设备</span>
+
+									</a>
+								</li>
+								<li>
+									<a href="index.html#">
+										<span class="photo"><img alt="avatar" src="res/img/w-restart.png"></span>
+										<span class="subject"></span>
+										<span class="from" style="padding-left: 10px;">重启设备</span>
+
+									</a>
+								</li>
+								<li>
+									<a href="index.html#">
+										<span class="photo"><img alt="avatar" src="res/img/w-exit.png"></span>
+										<span class="subject"></span>
+										<span class="from" style="padding-left: 10px;">退出设备</span>
+
+									</a>
+								</li>
+							</ul>
+						</li>
+
+						<li class="grey">
+							<a data-toggle="dropdown" class="dropdown-toggle" href="#">
+								<img src="res/img/admin.png" class="nav-img" />
+							</a>
+						</li>
+
+					</ul>
+					<!-- /.ace-nav -->
+				</div>
+				<!-- /.navbar-header -->
+			</div>
+			<!-- /.container -->
+		</div>
+
+		<div class="main-container" id="main-container">
+
+			<div class="main-container-inner">
+				<div style="position: absolute;">
+					<div class="copy_right">
+						【注】</br>在简易模式状态下，预设</br>参数可以直接使用，如要</br>更换，点击加选更多设置
+					</div>
+					<div class="right-bottm">
+						Copyright &copy; 2016.广州嘉影 版权</br>所有&copy; 广州嘉影</br>粤IC备11047519号-1
+					</div>
+				</div>
+
+				<div class="sidebar" id="sidebar">
+
+				
+						<!--<li class="active">
+							<a href="index.html" class="flex-row">
+								<i class=""><img src="res/img/b-simple-icon.png"/></i>
+								<span class="menu-text">简易模式</span>
+							</a>
+						</li>
+
+						<li>
+							<a href="index.html">
+								<i class=""><img src="res/img/pro-icon.png"/></i>
+								<span class="menu-text"> 专家模式 </span>
+							</a>
+						</li>-->
+						<div class="simple none-active" onclick="goIndex()">
+							简易模式
+						</div>
+						<div class="pro" onclick="goProIndex()">
+							专家模式
+						</div>
+								<!--<a href="index.html" class="" >
+									<div class="user-img-div flex-row">
+										<img src="res/img/b-simple-icon.png" class="img-thumbnail nav-left-img" />
+										<span>简易模式</span>
+
+									</div>
+						
+								</a>
+						
+								<a href="pro-index.html" class="">
+							
+									<div class="user-img-div flex-row">
+										<img src="res/img/pro-icon.png" class="img-thumbnail nav-left-img" />
+										<span>专家模式</span>
+									</div>
+								</a>-->
+					
+						<!-- /.nav-list -->
+
+				</div>
+
+				<div class="main-content">
+					<div class="page-content all-margin">
+						<!--<div class="page-header">
+							<h1>
+								控制台
+								<small>
+									<i class="icon-double-angle-right"></i>
+									 查看
+								</small>
+							</h1>
+						</div>-->
+						<!--
+                    	作者：wu18227660504@gmail.com
+                    	时间：2018-04-13
+                    	描述： 预设标签
+                    -->
+						<div class="row" style="height: 100px;">
+							<div class="col-md-12">
+								<!--	<div class="panel panel-default border-line">-->
+								<div class="row top-lable">
+									<div class="col-md-11 border-line flex-row" style="border-radius: 45px; height: 60px;" id="content-preset">
+
+									</div>
+									<div class="col-md-1">
+											<a href="simple-add.html?fromeId=1"><img src="res/img/add.png" class="image-responsive center-block add-png" />
+										</a>
+									</div>
+								</div>
+
+							</div>
+
+						</div>
+						<div class="header-choose">
+							
+									<ul class="nav nav-tabs" id="myTab4">
+											<li class="active">
+												<a data-toggle="tab" href="#home4" class=" nav-control-tab content-tab font-color">
+													<!--<div class="slopingside"></div> -->
+													<img src="res/img/c-content.png" style="width: 37px;" class="nav-control-img  toyellow"/>
+													<span>内容控制</span></a>
+											</li>
+
+											<li >
+												<a data-toggle="tab" href="#profile4" class="nav-control-tab light-tab">
+														<img src="res/img/c-light.png" class="nav-control-img"/>
+													<span>灯光控制</span></a>
+											</li>
+											<li class="">
+												<a data-toggle="tab" href="#home5" class="nav-control-tab voice-tab">
+														<img src="res/img/c-voice.png" style="width: 38px;" class="nav-control-img"/>
+													<span>音量控制</span></a>
+											</li>
+											<li class="">
+												<a data-toggle="tab" href="#dropdown15" class="nav-control-tab equipment-tab">
+														<img src="res/img/c-setting.png" style="width: 35px;" class="nav-control-img"/>
+													<span>设备控制</span></a>
+											</li>
+										</ul>
+
+							
+						</div>
+						<div class="row ">
+							<div class="col-md-12 ">
+
+								<div class="panel panel-default ">
+									<div class="tabbable">
+									
+										<div class="tab-content" style="height: 680px;">
+											<div id="home4" class="tab-pane active">
+
+												<div class="row add-content-head head-font">
+													
+													<span class="classification">内容列表 </span>
+													<div class="dropdown content-control-btn" style="display: inline-block;">
+															<div class="dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+																<span style="padding-right: 10px;" id="content-name">内容控制</span>
+																<span class="caret"></span>
+															</div>
+															<ul class="dropdown-menu" aria-labelledby="dropdownMenu1" id="content-contrl-li">
+															
+
+															</ul>
+														</div>
+														
+													<div class="pull-right" style="">
+														<img src="res/img/fasongquanbu.png" id="sendAll">
+														<img src="res/img/fasongsuoxuan.png" id="sendSelect">
+														<span class="pull-right" style="margin-right: 20px;">|    <span style="color: #e77817;font-size: 22px;">Content List</span></span>
+
+													</div>
+				
+												</div>
+
+												<div class="row">
+													<div class="col-xs-12">
+														<div class="table-responsive">
+															<table id="sample-table-1" class="table table-striped table-bordered table-hover">
+																<thead>
+																	<tr>
+																		<th class="center">
+																			<label>
+																<input type="checkbox" class="ace choose-all">
+																<span class="lbl"></span>
+															</label>
+																		</th>
+																		<th>ID</th>
+
+																		<th class="hidden-480">内容名称</th>
+
+																		<th class="hidden-480">展项</th>
+
+																		<th class="hidden-480">日期</th>
+
+																	</tr>
+																</thead>
+
+																<tbody id="content-list">
+																	<!--<tr>
+																		<td class="center">
+																			<label>
+																<input type="checkbox" class="ace choose-one">
+																<span class="lbl"></span>
+															</label>
+																		</td>
+
+																		<td>
+																			<span>#12514515445</span>
+																		</td>
+
+																	
+																		<td>日照风光-360全景-01</td>
+
+																		<td class="hidden-480">
+																			显示屏#01
+																		</td>
+
+																		<td>
+																			2017/11/31
+																		</td>
+																	</tr>-->
+
+																</tbody>
+															</table>
+														</div>
+														<!-- /.table-responsive -->
+													</div>
+													<!-- /span -->
+												</div>
+											</div>
+
+											<div id="profile4" class="tab-pane">
+												<div class="row add-content-head head-font">
+										<span class="classification"> 环境灯光控制</span>
+
+													<!--<div class="col-sm-7 flex-row">
+														<span style="padding-right: 20px;">暗</span>
+														<div class="help-block" id="input-size-slider"></div>
+														<span> 亮</span>
+													</div>-->
+
+												</div>
+
+												<div class="row" style="margin-top: 36px;">
+													<div class="col-md-6 ">
+														<div class="panel panel-default border-line choose-item lighting">
+															<div class="row">
+																<div class="col-md-12">
+																	<div class="top-item" style="padding-left: 0;">
+
+																		<span>照明灯光 </span>
+
+																		<span class="pull-right span-right">|    <span style="color: #e77817;font-size: 22px;">Lighting</span></span>
+																	</div>
+																</div>
+															</div>
+															<div class="row">
+																<div class="col-md-12">
+																	<h2 class="page-head-line" style="border-bottom: 2px solid #a5a4a5;margin: 0px 20px 10px 10px;"></h2>
+																</div>
+															</div>
+															<div id="light-list">
+																<!--<div class="row">
+
+																	<div class="col-md-4 ">
+																		<div class="inline c-sign-photo c-add-item1 " data-open="0" data-type="light-sign">
+																			<img src="res/img/qianmhui.png" />
+																			<span>签名拍照</span>
+																		</div>
+
+																	</div>
+																	<div class="col-md-4 ">
+																		<div class="inline c-floor-exit c-add-item1" data-open="0" data-type="light-floor">
+																			<img src="res/img/loudao.png" />
+																			<span>楼道出口</span>
+																		</div>
+
+																	</div>
+																	<div class="col-md-4 ">
+																		<div class="inline c-floor-light c-add-item1" data-open="0" data-type="light-size">
+																			<img src="res/img/deng.png" />
+																			<span>灯#0111</span>
+																		</div>
+
+																	</div>
+																</div>-->
+
+															</div>
+														</div>
+													</div>
+													<div class="col-md-6 ">
+														<div class="row">
+															<div class="col-md-12">
+																<div class="panel panel-default border-line choose-item led-lighting">
+																	<div class="row">
+																		<div class="col-md-12">
+																			<div class="top-item" style="padding-left: 0;">
+
+																				<span>LED灯光 </span>
+
+																				<span class="pull-right span-right">|    <span style="color: #e77817;font-size: 22px;">LED Light</span></span>
+																			</div>
+																		</div>
+																	</div>
+																	<div class="row">
+																		<div class="col-md-12">
+																			<h2 class="page-head-line" style="border-bottom: 2px solid #a5a4a5;margin: 0px 20px 10px 10px;"></h2>
+																		</div>
+																	</div>
+																	<div id="choosed-color" onclick="sendColor()">
+																		确认
+																	</div>
+																	<div id="color" class="choose-color">
+																		<span>颜色：</span>
+																	
+																	</div>
+																	<div id="huetable" hidden="true">
+
+																	</div>
+																	
+																	<div class="led-form">
+																		<div class="led-box led-box-select" data-index='0' >
+																			<div class="led-sbox" style="background: hsl(187, 100.0%, 98.2%);">
+																				
+																			</div>
+																		</div>
+																		<div class="led-box" data-index='1' >
+																			<div class="led-sbox" style="background: hsl(199, 84.3%, 72.5%);">
+																				
+																			</div>
+																		</div>
+																		<div class="led-box" data-index='2' >
+																			<div class="led-sbox" style="background: hsl(181, 76.4%, 50.2%);">
+																				
+																			</div>
+																		</div>
+																		<div class="led-box" data-index='3' >
+																			<div class="led-sbox" style="background: hsl(355, 81.9%, 54.5%);">
+																				
+																			</div>
+																		</div>
+																		<div class="led-box" data-index='4' >
+																			<div class="led-sbox" style="background: hsl(318, 74.2%, 52.9%);">
+																				
+																			</div>
+																		</div>
+																		<div class="led-box" data-index='5' >
+																			<div class="led-sbox" style="background: hsl(31, 100.0%, 64.9%);">
+																				
+																			</div>
+																		</div>
+																		<div class="led-box" data-index='6' >
+																			<div class="led-sbox" style="background: hsl(55, 100.0%, 56.1%);">
+																				
+																			</div>
+																		</div>
+																		<div class="led-box" data-index='7' >
+																			<div class="led-sbox" style="background: hsl(136, 78.4%, 54.7%);">
+																				
+																			</div>
+																		</div>
+																		<div class="led-box" data-index='8' >
+																			<div class="led-sbox" style="background:hsl(209, 100%, 46.9%)">
+																				
+																			</div>
+																		</div>
+																		<div class="led-box" data-index='9' >
+																			<div class="led-sbox" style="background: hsl(274, 100%, 68.0%);">
+																				
+																			</div>
+																		</div>
+																	</div>
+																	<div id="lightness" class="choose-color">
+																		<span>亮度：</span>
+																	
+																	</div>
+																	<div id="lightnesstable">
+
+																	</div>
+																	
+																</div>
+
+															</div>
+
+														</div>
+														<!--<div class="row">
+															<div class="col-md-12">
+																<div class="panel panel-default border-line choose-item decorative-light">
+																	<div class="row">
+																		<div class="col-md-12">
+																			<div class="top-item">
+
+																				<span>装饰灯带 </span>
+
+																				<span class="pull-right">|    <span style="color: #e77817;font-size: 22px;">Decorative Light</span></span>
+																			</div>
+																		</div>
+																	</div>
+																	<div class="row">
+																		<div class="col-md-12">
+																			<h2 class="page-head-line" style="border-bottom: 2px solid #a5a4a5;margin: 0px 20px 10px 10px;"></h2>
+																		</div>
+																	</div>
+																	<div class="row">
+
+																		<div class="col-md-4 ">
+																			<div class="inline c-add-item1" data-open="0" data-type="light-lamp">
+																				<img src="res/img/dnegdai.png" />
+																				<span>灯带样式1</span>
+																			</div>
+
+																		</div>
+																		<div class="col-md-4 ">
+																			<div class="inline c-add-item1" data-open="0" data-type="light-lamp">
+																				<img src="res/img/dnegdai.png" />
+																				<span>灯带样式1</span>
+																			</div>
+
+																		</div>
+																		<div class="col-md-4 ">
+																			<div class="inline c-add-item1" data-open="0" data-type="light-lamp">
+																				<img src="res/img/dnegdai.png" />
+																				<span>灯带样式1</span>
+																			</div>
+
+																		</div>
+																	</div>
+																</div>
+
+															</div>
+
+														</div>-->
+
+													</div>
+
+												</div>
+											</div>
+
+											<div id="dropdown15" class="tab-pane">
+												<div class="row">
+													<div class="add-content-head head-font">
+				
+															<span class="classification" style="vertical-align: middle;font-weight: bold;">设备控制 </span>
+															<img src="res/img/beizhu.png" style=" margin-left: 50px;width: 308px;" />
+															<img src="res/img/quanbuxiufu.png" class="pull-right right-dis" style="width: 176px;">
+
+														
+													</div>
+
+												</div>
+												<div class="row" style="margin-top: 36px;">
+													<div class="col-md-3">
+														<div class="inline c-add-item2" data-open="0" data-type="light-projector">
+															<img src="res/img/sadness.png" class="projector-state" />
+															<span>投影仪#1</span>
+															<img src="res/img/xiufucheng.png" class="projector-repairing" />
+														</div>
+													</div>
+													<div class="col-md-3">
+														<div class="inline c-add-item2" data-open="0" data-type="light-projector">
+															<img src="res/img/sadness.png" class="projector-state" />
+															<span>投影仪#1</span>
+															<img src="res/img/xiufucheng.png" class="projector-repairing" />
+														</div>
+													</div>
+													<div class="col-md-3">
+														<div class="inline c-add-item2" data-open="0" data-type="light-projector">
+															<img src="res/img/sadness.png" class="projector-state" />
+															<span>投影仪#1</span>
+															<img src="res/img/xiufucheng.png" class="projector-repairing" />
+														</div>
+													</div>
+													<div class="col-md-3">
+														<div class="inline c-add-item2" data-open="0" data-type="light-projector">
+															<img src="res/img/sadness.png" class="projector-state" />
+															<span>投影仪#1</span>
+															<img src="res/img/xiufucheng.png" class="projector-repairing" />
+														</div>
+													</div>
+												</div>
+												<div class="row" style="margin-top: 36px;">
+													<div class="col-md-3 ">
+														<div class="inline c-add-item2" data-open="0" data-type="light-projector">
+															<img src="res/img/sadness.png" class="projector-state" />
+															<span>投影仪#1</span>
+															<img src="res/img/xiufucheng.png" class="projector-repairing" />
+														</div>
+													</div>
+													<div class="col-md-3 ">
+														<div class="inline c-add-item2" data-open="0" data-type="light-projector">
+															<img src="res/img/sadness.png" class="projector-state" />
+															<span>投影仪#1</span>
+															<img src="res/img/xiufucheng.png" class="projector-repairing" />
+														</div>
+													</div>
+													<div class="col-md-3 ">
+														<div class="inline c-add-item2" data-open="0" data-type="light-projector">
+															<img src="res/img/sadness.png" class="projector-state" />
+															<span>投影仪#1</span>
+															<img src="res/img/xiufucheng.png" class="projector-repairing" />
+														</div>
+													</div>
+													<div class="col-md-3">
+														<div class="inline c-add-item2" data-open="0" data-type="light-projector">
+															<img src="res/img/sadness.png" class="projector-state" />
+															<span>投影仪#1</span>
+															<img src="res/img/xiufucheng.png" class="projector-repairing" />
+														</div>
+													</div>
+												</div>
+											</div>
+											<div id="home5" class="tab-pane">
+												<div class="row add-content-head head-font">
+											
+				<span class="classification">音量控制 </span>
+															<div class="inline pull-right">
+																<img src="res/img/chongzhi.png" style="margin-right: 25px;" id="voice-reset">
+																<img src="res/img/quanbujingyin.png" id="voice-mute" class="right-dis" />
+															</div>
+											
+
+												</div>
+												<div class="row" style="margin-top: 36px;">
+													<div class="col-md-12 flex-row" id="volume-list">
+														<!--<div class="flex-light-item">
+															<div class="slide-light-item" style="padding-left: 20px;">
+																<img src="res/img/kedu.png" style="vertical-align: top;margin-top: 4px;height: 473px;" />
+																<div class="help-block voice-slider" id="input-voice-slider1" style="margin-top: 11px;"></div>
+															</div>
+															<div class="span">
+																主题</br>讲解A
+
+															</div>
+
+														</div>
+														<div class="flex-light-item">
+															<div class="slide-light-item">
+																<img src="res/img/yinglingkedu.png" style="vertical-align: top;margin-top: 4px;" />
+																<div class="help-block voice-slider" id="input-voice-slider2"></div>
+															</div>
+															<div class="span">
+																主题</br>讲解A
+															</div>
+														</div>
+													-->
+													</div>
+												</div>
+												<div class="row" style="margin-top: 10px;">
+													<div class="col-md-12 flex-row" style="margin-left:20px ;">
+
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+									<!--<div class="list-group">
+  <a href="#" class="list-group-item list-group-item-success">Dapibus ac facilisis in</a>
+  <a href="#" class="list-group-item list-group-item-info">Cras sit amet nibh libero</a>
+  <a href="#" class="list-group-item list-group-item-warning">Porta ac consectetur ac</a>
+  <a href="#" class="list-group-item list-group-item-danger">Vestibulum at eros</a>
+</div>-->
+
+								</div>
+							</div>
+						</div>
+					</div>
+					<!-- /.page-content -->
+				</div>
+				<!-- /.main-content -->
+
+			</div>
+			<!-- /.main-container-inner -->
+			<div id="tips-load" >
+							<div class="loading">
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+</div>
+</div>
+			
+			<a href="#" id="btn-scroll-up" class="btn-scroll-up btn btn-sm btn-inverse">
+				<i class="icon-double-angle-up icon-only bigger-110"></i>
+			</a>
+			
+		</div>
+		<!-- /.main-container -->
+
+		<!-- basic scripts -->
+
+		<script type="text/javascript">
+			window.jQuery || document.write("<script src='assets/js/jquery-2.0.3.min.js'>" + "<" + "script>");
+		</script>
+
+		<script type="text/javascript">
+			if("ontouchend" in document) document.write("<script src='assets/js/jquery.mobile.custom.min.js'>" + "<" + "script>");
+		</script>
+		<script src="assets/js/bootstrap.min.js"></script>
+
+		<script src="assets/js/jquery-ui-1.10.3.custom.min.js"></script>
+		<script src="assets/js/jquery.ui.touch-punch.min.js"></script>
+		<script src="assets/js/jquery.cookie.js" type="text/javascript" charset="utf-8"></script>
+
+		<script src="assets/js/main.js" type="text/javascript" charset="utf-8"></script>
+
+		<!-- inline scripts related to this page -->
+
+		<script type="text/javascript">
+			var ImgPath = "res/img/";
+var lig='50';
+var col='0';
+var ledObj;
+			//页面加载就执行
+			$(function() {
+				testWebSocket();
+				renderPresetList();
+				getCompnameListCallback();
+				getLightNamelistCallback();
+				getAllContenttypeCallback();
+				drawHueTable(0);
+				drawLigTable(0);
+				setColor(); 
+		tipshide();
+			});
+			
+			
+			function drawHueTable(hue) {
+    var x, i, n;
+    x = "<table class='tableslider'>"
+    x += "<tr>";
+    n = 0;
+    for (i = 0; i <= 360; i++) {
+        n = i;
+        x += "<td";
+        x += " style='position:relative;padding:0;'><div class='pointer hue' id='huepointer" + n + "'><div>" + n + "</div><span></span></div></td>";
+    }
+    x += "</tr>";
+    x += "<tr>";
+    n = 0;
+    for (i = 0; i <= 360; i++) {
+        n = i;
+        x += "<td style='background-color:hsl(" + n + ",100%,50%);height:22px;padding:0;'  onclick='clickHue(" + n + ")'></td>";
+    }
+    x += "</tr>";
+    x += "</table>";
+    document.getElementById("huetable").innerHTML = x;
+
+				$("#huepointer0").css('display','inline');
+}
+function drawLigTable(hue) {
+    var x, i;
+    x = "<table class='tableslider'>"
+    x += "<tr>";
+    for (i = 0; i <= 100; i++) {
+        x += "<td style='position:relative;padding:0;'><div class='pointer' id='ligpointer" + i + "'><div>" + i + "</div><span></span></div></td>";
+    }
+    x += "</tr>";
+    x += "<tr>";
+    for (i = 0; i <= 100; i++) {
+        x += "<td class='llight' onclick='clickLig(" + i + ")' style='padding:0;height:22px;background-color: hsl(" + hue + ", 100%," + i + "%)'></td>";
+    }
+    x += "</tr></table>";
+    document.getElementById("lightnesstable").innerHTML = x;
+        		$("#ligpointer50").css('display','inline');
+}			
+	function clickHue(i) {
+		$("#huepointer"+col).css('display','none');
+col=i;
+$("#huepointer"+i).css('display','inline');
+    setColor();
+}
+
+function clickLig(i) {
+  // console.log(lig)
+  //let val=findSelectColor();
+  		$("#ligpointer"+lig).css('display','none');
+   lig=i;
+   $("#ligpointer"+i).css('display','inline');
+   clickSetColor();
+}	
+
+function clickSetColor(){
+	let val=findSelectColor();
+let h=val[0]*360;
+let s=val[1]*100+"%";
+let l=Math.round(val[2]*100);
+//console.log(val);
+	let str="hsl("+h+ ","+s+","+lig+"%)"
+	$("#choosed-color").css('background',str)
+//	let st="hsl("+col+",100%,"+lig+")";
+//	console.log($(".llight").css('background'))
+
+	
+//	$("#conColor").text(st);
+//	$("#conLight").text(st)
+
+
+}
+function setColor(){
+	let val=findSelectColor();
+let h=val[0]*360;
+let s=val[1]*100+"%";
+let l=Math.round(val[2]*100);
+//console.log(val);
+	let str="hsl("+h+ ","+s+","+l+"%)"
+	$("#choosed-color").css('background',str);
+}
+
+function setBottomColor(){
+	let str="hsl("+col+ ",100%,"+lig+"%)"
+	$("#choosed-color").css('background',str)
+	let st="hsl("+col+",100%,"+lig+")";
+//	$("#conColor").text(st);
+//	$("#conLight").text(st)
+
+
+}
+function sendColor(){
+	tipsshow();
+		setTimeout(function(){tipshide()},1000);
+	setLedBeltColorCallback(getHex())
+//		console.log(getHex());
+//	addNewPresetDataCallback(null,null,getHex(),null,null,null)
+}
+function getHex(){
+	let str=$("#choosed-color").css('background-color');
+	return colorRGB2Hex(str);
+}
+//led 颜色选择框点击
+$(".led-box").on('click', function(e) {
+$(".led-box").removeClass('led-box-select');
+$(this).addClass('led-box-select');
+ledObj=this;
+let val=findSelectColor();
+let h=val[0]*360;
+let s=val[1]*100+"%";
+
+//console.log(val);
+	$('.llight').each(function(index) {
+					//console.log(vioceValue);
+						let strr="hsl("+h+ ","+s+","+(index+1)+"%)"
+	$(this).css('background',strr);
+				//console.log(strr);
+
+			});
+			clickLig(Math.round(val[2]*100))
+				});
+function findSelectColor(){
+	let str
+	if(!ledObj) {
+		str="rgb(246, 254, 255)";
+	}else{
+		
+		str=$(ledObj).find('.led-sbox').css('background-color');
+	}
+	//console.log(str);
+let len=str.length;
+str=str.substring(4,len-1)
+str=str.split(',')
+return rgbToHsl(str[0],str[1],str[2]);
+
+}
+			//内容表單選中
+
+			$("#sendAll").on('click', function(e) {
+				//chooseAll();	
+tipsshow();
+				let val = [];
+				$('.choose-one').each(function(index) {
+					//console.log(vioceValue);
+
+					val.push($(this).data("value"));
+
+				})
+				//console.log(val);
+				exeDispListCmdCallback(val);
+				setTimeout(function(){tipshide()},1000);
+			});
+			$("#sendSelect").on('click', function(e) {
+				tipsshow();
+				let val = [];
+				$('.choose-one').each(function(index) {
+					//console.log(vioceValue);
+					if($(this).is(':checked')) {
+						val.push($(this).data("value"));
+					}
+				})
+				//console.log(val);
+				exeDispListCmdCallback(val);
+				setTimeout(function(){tipshide()},1000);
+			});
+
+			$(".choose-all").on('click', function(e) {
+				chooseAll();
+			});
+
+			function chooseAll() {
+				if($(".choose-all").is(':checked')) {
+					$('.choose-one').prop("checked", true);
+					$('.choose-one').parent().parent().parent().css('color', "#E77817");
+				} else {
+					$('.choose-one').prop("checked", false);
+					$(".choose-one").parent().parent().parent().css('color', "#393939")
+				}
+			}
+			//·····················
+
+			$(".c-add-item2").on('click', function(e) {
+				let that = $(this);
+				let open = $(this).open;
+				if(open == 1) {
+					return;
+				} else {
+					that.children('.projector-state').attr('src', 'res/img/b-smile.png');
+					that.children('.projector-repairing').attr('src', "res/img/repairing.png")
+					that.data('open', '1');
+					that.addClass('c-add-item2-active');
+				}
+			});
+			$(".user-img-div").on('click', function(e) {
+				//console.log(e.currentTarget.id);
+				$(".user-img-div").removeClass("nav-active");
+				$(this).addClass("nav-active");
+
+			});
+			//光的控制
+			$("#input-size-slider").css('width', '622px').slider({
+				//							orientation: "vertical",
+				value: 4,
+				range: "min",
+				min: 1,
+				max: 100,
+				step: 1,
+				slide: function(event, ui) {
+
+					var val = parseInt(ui.value);
+					//console.log(val)
+				}
+			});
+
+			//静音
+
+			$('#voice-mute').click(function() {
+				let datas=[]
+			
+tipsshow();
+				$('.slide-light-item .help-block').each(function(index) {
+					$(this).slider('value', 0);
+						let data={};
+					data["ContentType"]=$(this).data("value");
+					data["VolumeValue"]=0;
+					datas.push(data);
+					//setVolumeCtrlCallback($(this).data("value"),0)
+				});
+			setVolumeCtrlListCallback(datas);
+	setTimeout(function(){tipshide()},1000);
+			})
+			$('#voice-reset').click(function() {
+tipsshow();
+	let datas=[]
+				$('.slide-light-item .help-block').each(function(index) {
+					$(this).slider('value', 50)
+					//setVolumeCtrlCallback($(this).data("value"),50);
+						let data={};
+					data["ContentType"]=$(this).data("value");
+					data["VolumeValue"]=50;
+					datas.push(data);
+				});
+					setVolumeCtrlListCallback(datas);
+	setTimeout(function(){tipshide()},1000);
+			})
+			$('.nav-control-tab').click(function() {
+$('.nav-control-tab').removeClass('font-color');
+				$('.nav-control-tab').find('img').removeClass('toyellow')
+				$(this).find('img').addClass('toyellow');
+				$(this).addClass("font-color")
+
+
+			})
+			/*			$("#input-voice-slider1").css('width', '25px').slider({
+							orientation: "vertical",
+							value: 4,
+							range: "min",
+							min: 1,
+							max: 100,
+							step: 1,
+							slide: function(event, ui) {
+
+								var val = parseInt(ui.value);
+								console.log(val)
+							}
+						});
+						$("#input-voice-slider2").css('width', '25px').slider({
+							orientation: "vertical",
+							value: 4,
+							range: "min",
+							min: 1,
+							max: 100,
+							step: 1,
+							slide: function(event, ui) {
+
+								var val = parseInt(ui.value);
+								console.log(val)
+							}
+						});
+						$("#input-voice-slider3").css('width', '25px').slider({
+							orientation: "vertical",
+							value: 4,
+							range: "min",
+							min: 1,
+							max: 100,
+							step: 1,
+							slide: function(event, ui) {
+
+								var val = parseInt(ui.value);
+								console.log(val)
+							}
+						});
+						$("#input-voice-slider4").css('width', '25px').slider({
+							orientation: "vertical",
+							value: 4,
+							range: "min",
+							min: 1,
+							max: 100,
+							step: 1,
+							slide: function(event, ui) {
+
+								var val = parseInt(ui.value);
+								console.log(val)
+							}
+						});
+						$("#input-voice-slider5").css('width', '25px').slider({
+							orientation: "vertical",
+							value: 4,
+							range: "min",
+							min: 1,
+							max: 100,
+							step: 1,
+							slide: function(event, ui) {
+
+								var val = parseInt(ui.value);
+								console.log(val)
+							}
+						});
+						$("#input-voice-slider6").css('width', '25px').slider({
+							orientation: "vertical",
+							value: 4,
+							range: "min",
+							min: 1,
+							max: 100,
+							step: 1,
+							slide: function(event, ui) {
+
+								var val = parseInt(ui.value);
+								console.log(val)
+							}
+						});
+						$("#input-voice-slider7").css('width', '25px').slider({
+							orientation: "vertical",
+							value: 4,
+							range: "min",
+							min: 1,
+							max: 100,
+							step: 1,
+							slide: function(event, ui) {
+
+								var val = parseInt(ui.value);
+								console.log(val)
+							}
+						});
+						$("#input-voice-slider8").css('width', '25px').slider({
+							orientation: "vertical",
+							value: 4,
+							range: "min",
+							min: 1,
+							max: 100,
+							step: 1,
+							slide: function(event, ui) {
+
+								var val = parseInt(ui.value);
+								console.log(val)
+							}
+						});*/
+		</script>
+
+	</body>
+
+</html>
