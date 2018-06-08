@@ -780,6 +780,39 @@ background-repeat: no-repeat;
     opacity: 0.2;
     z-index: 1000000;
 	}
+	.img-upload{
+	 position: absolute;
+    top: 56px;
+    z-index: 100;
+    background: #dcdcd6;
+    right: 70px;
+    font-size: 20px;
+    text-align: center;
+  
+	}
+	.img-upload-show{
+		display: block;
+	}
+	#clipArea {
+	margin: 20px;
+	height: 300px;
+}
+#file,
+#clipBtn,#clipConfirm {
+	margin: 10px;
+	    border-radius: 9px;
+    border-width: 0;
+    border: 1px solid #a5a4a5;
+    display: inline-grid;
+}
+#clipBtn,#clipConfirm {
+	    padding: 4px 8px;
+}
+#view {
+	margin: 0 auto;
+	width: 200px;
+	height: 200px;
+}
 	.cookie-span{
 		    display: inline-block;
     width: 200px;

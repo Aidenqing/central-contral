@@ -6,7 +6,17 @@
 		<title>中控系统</title>
 		<meta name="keywords" content="中控系统" />
 		<meta name="description" content="中控系统" />
-		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<!--		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+-->		<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui" />
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="format-detection" content="telephone=no, email=no" />
+<meta name="keywords" content="">
+<meta name="description" content="">
+<script src="assets/js/jquery-2.1.3.min.js"></script>
+<script src="assets/js/iscroll-zoom.js"></script>
+<script src="assets/js/hammer.js"></script>
+<script src="assets/js/lrz.all.bundle.js"></script>
+<script src="assets/js/jquery.photoClip.js"></script>
 		<!-- basic styles -->
 		<link href="assets/css/bootstrap.min.css" rel="stylesheet" />
 		<link rel="stylesheet" href="assets/css/font-awesome.min.css" />
@@ -151,13 +161,13 @@
 				margin-left: 10px;
 				margin-right: 20px;
 			}
-			.item-delete{
+			
+			.item-delete {
 				position: absolute;
-    top: 6px;
-    right: 20px;
-    width: 20px;
-    height: 20px;
- 
+				top: 6px;
+				right: 20px;
+				width: 20px;
+				height: 20px;
 			}
 		</style>
 	</head>
@@ -290,12 +300,19 @@
 										<div class="inline" style="width: 340px;">
 											<input type="text" maxlength="12" class="form-search" placeholder="请输入预设名称" style="width: 95%;height: 100%; text-indent: 15px;   font-size: 22px;" id="preset-name">
 										</div>
-										<span style="margin-left: 80px;">封面：</span>
-										<img src="res/img/shangchuan.png" />
+										<span style="margin-left: 63px;">封面：</span>
+										<img src="res/img/shangchuan.png" id='upload-icon'/>
 										<span style="width: 80px;margin-left: 20px;">标签：</span>
 										<span class="c-span c-span-active" data-value='1' id="show-btn">参展</span>
 										<span class="c-span" data-value="0" id="ligth-btn">灯光</span>
+<div class="img-upload">
+	<div id="clipArea"></div>
+<input type="file" id="file">
 
+<div id="view"></div>
+<div id="clipBtn" class="">截取</div>
+<div id='clipConfirm' >确认</div>
+</div>
 									</div>
 									<div class="col-md-1">
 										<img src="res/img/xuanzhong.png" id="add-preset" class="gou" />
@@ -315,7 +332,7 @@
 
 												<span>添加内容 </span>
 												<img src="res/img/jiaxuan.png" id="add-content">
-												<span  style="color: #8f8f8f;font-size: 22px;padding-left: 226px;" onclick="emptyList(0)">清空</span>
+												<span style="color: #8f8f8f;font-size: 22px;padding-left: 226px;" onclick="emptyList(0)">清空</span>
 												<span class="pull-right span-right">|    <span style="color: #e77817;font-size: 22px;">Add Content</span></span>
 											</div>
 										</div>
@@ -371,7 +388,7 @@
 												</div>
 											</div>
 											<div id="add-light-item">
-				
+
 											</div>
 											<div class="led-box">
 												<span style="position:absolute;left: -83px; ">LED颜色</span>
@@ -604,10 +621,7 @@
 
 		<!--[if !IE]> -->
 
-		<script type="text/javascript">
-			window.jQuery || document.write("<script src='assets/js/jquery-2.0.3.min.js'>" + "<" + "script>");
-		</script>
-
+		
 		<script type="text/javascript">
 			if("ontouchend" in document) document.write("<script src='assets/js/jquery.mobile.custom.min.js'>" + "<" + "script>");
 		</script>
@@ -635,6 +649,23 @@
 			} else {
 				$(".simple").addClass("none-active")
 			}
+			$('.img-upload').hide();
+			var clipArea = new bjj.PhotoClip("#clipArea", {
+				size: [263, 263],
+				outputSize: [640, 640],
+				file: "#file",
+				view: "#view",
+				ok: "#clipBtn",
+				loadStart: function() {
+					console.log("照片读取中");
+				},
+				loadComplete: function() {
+					console.log("照片读取完成");
+				},
+				clipFinish: function(dataURL) {
+					console.log(dataURL);
+				}
+			});
 		</script>
 		<script type="text/javascript">
 			var ImgPath = "res/img/";
@@ -642,7 +673,22 @@
 				let addLights = [];
 				let addVolume = [];
 				let addVolumes = [];*/
+//图片上传确认按钮点击
+var uploadFlg=false;
+	$("#clipConfirm").on('click', function(e) {
+uploadFlg=false;
+$('.img-upload').hide(1000);
+			});
+//上传icon 点击
+	$("#upload-icon").on('click', function(e) {
+		uploadFlg=!uploadFlg;
+	if(uploadFlg){
+		$('.img-upload').show(1000);
+	}else{
+			$('.img-upload').hide(1000);
+	}
 
+			});
 			//内容添加
 			var presetLable = "参展";
 
@@ -684,7 +730,7 @@
 					html += "</div>";
 				}
 				$("#add-content-item").append(html);
-			
+
 				itemDelete();
 				//clickContent();
 			}
@@ -740,52 +786,55 @@
 				}
 				$("#add-light-item").append(html);
 				//clickLight();
-//				itemHover();
-//				itemHoverLeave();
+				//				itemHover();
+				//				itemHoverLeave();
 				itemDelete();
 			}
 			//item 删除相关
-			function itemHover(){
+			function itemHover() {
 				$(".add-item-hover").on('mouseover', function(e) {
-				//console.log(e.currentTarget.id);
-//			console.log("11")
-				$(this).find('.item-delete').css('display','block');
-			});	
+					//console.log(e.currentTarget.id);
+					//			console.log("11")
+					$(this).find('.item-delete').css('display', 'block');
+				});
 			}
-				function itemDelete(){
-				$(".item-delete").on('click', function(e) {
-					let type=$(this).data("type")
-			
-				if(type==0){
-				let val=	$(this).parent().text();
-				let index=addContents.indexOf(val);
-				addContents.splice(index,1);
-				console.log(addContents)
-				renderContent(addContents);	
-				return;
-				}
-				let val=	$(this).parent().find('span').text();
-				let index=addLights.indexOf(val);
-				addLights.splice(index,1);			
-				renderLight(addLights);
 
-			});	
-			}
-				function emptyList(str){
-					if(str==0){
-						addContents=[];
-						renderContent(addContents)
-					}else{
-						addLights=[];
-						renderLight(addLights)
+			function itemDelete() {
+				$(".item-delete").on('click', function(e) {
+					let type = $(this).data("type")
+
+					if(type == 0) {
+						let val = $(this).parent().text();
+						let index = addContents.indexOf(val);
+						addContents.splice(index, 1);
+						console.log(addContents)
+						renderContent(addContents);
+						return;
 					}
+					let val = $(this).parent().find('span').text();
+					let index = addLights.indexOf(val);
+					addLights.splice(index, 1);
+					renderLight(addLights);
+
+				});
+			}
+
+			function emptyList(str) {
+				if(str == 0) {
+					addContents = [];
+					renderContent(addContents)
+				} else {
+					addLights = [];
+					renderLight(addLights)
 				}
-					function itemHoverLeave(){
+			}
+
+			function itemHoverLeave() {
 				$(".add-item-hover").on('mouseleave', function(e) {
-				//console.log(e.currentTarget.id);
-//			console.log("11")
-				$(this).find('.item-delete').css('display','none');
-			});	
+					//console.log(e.currentTarget.id);
+					//			console.log("11")
+					$(this).find('.item-delete').css('display', 'none');
+				});
 			}
 			//model添加内容
 			$("#modal-add").on('click', function(e) {
