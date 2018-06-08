@@ -302,6 +302,10 @@ margin-right: 12px;
 	vertical-align: middle;
 	    width: 90%;
     margin-left: 16px;
+ 
+}
+.p-relative{
+	position: relative;
 }
 .add-item-light-active{
 	color: #e77817;
@@ -356,7 +360,34 @@ margin-right: 12px;
 .col-sm-7 >span{
 	color: #d6d6d6;
 }
+.lunbo-oper-form{
+	
+    position:  absolute;
+    top: -10px;
+    right: 44px;
 
+}
+.lunbo-operation{
+	    text-align: right;
+    font-size: 18px;
+    /* margin: 0; */
+    position: absolute;
+    width: 56px;
+    top: 26px;
+    background: #e8e8e1;
+    padding: 10px;
+    display: none;
+}
+.light-more{
+	right: 33px;
+}
+.caret-down{
+	    border-top: 0;
+    border-bottom: 4px dashed;
+}
+.lunbo-operation>div{
+	padding-top: 10px;
+}
 .c-add-item1{
 	padding: 29px 10px 29px 10px;
     background-color: #D6D6D6;

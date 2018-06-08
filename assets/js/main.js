@@ -269,7 +269,7 @@ function onMessage(evt) {
 								let val=arr[j].length>4?(arr[j].substring(0,4)+".."):arr[j];
 								html += "<div class=\"col-lg-2\">";
 								html += "<div class=\"lunbo-part-light\" data-open=\"0\"><img src=\"res/img/d"+Dindex[j]+".png\" class=\"img-thumbnail lunbo_img\"/>";
-								html += "<h3>" + val+ "</h3></div>";
+								html += "<h3>" + val+ "</h3><div class=\"lunbo-oper-form light-more\"><span class=\"caret\"></span><div class=\"lunbo-operation\"><div class=\"editor\" data-value=\""+arr[j]+"\">编辑</div><div class=\"delete\" data-value=\""+arr[j]+"\">删除</div></div></div></div>";
 								html += "</div>";
 							}
 						} else {
@@ -278,7 +278,7 @@ function onMessage(evt) {
 	let val=arr[j].length>4?(arr[j].substring(0,4)+".."):arr[j];
 								html += "<div class=\"col-lg-2\">";
 								html += "<div class=\"lunbo-part-light\" data-open=\"0\"><img src=\"res/img/d"+Dindex[j]+".png\" class=\"img-thumbnail lunbo_img\"/>";
-								html += "<h3>" + val+ "</h3></div>";
+								html += "<h3>" + val+ "</h3><div class=\"lunbo-oper-form light-more\"><span class=\"caret\"></span><div class=\"lunbo-operation\"><div class=\"editor\" data-value=\""+arr[j]+"\">编辑</div><div class=\"delete\" data-value=\""+arr[j]+"\">删除</div></div></div></div>";
 								html += "</div>";
 							}
 						}
@@ -318,7 +318,7 @@ function onMessage(evt) {
 	let val=arr[m].length>4?(arr[m].substring(0,4)+"..."):arr[m];
 						html += "<div class=\"col-lg-2\">";
 						html += "<div class=\"lunbo-part-light\" data-open=\"0\"><img src=\"res/img/d"+Dindex[m]+".png\" class=\"img-thumbnail lunbo_img\"/>";
-						html += "<h3>" + val + "</h3></div>";
+						html += "<h3>" + val + "</h3><div class=\"lunbo-oper-form light-more\"><span class=\"caret\"></span><div class=\"lunbo-operation\"><div class=\"editor\" data-value=\""+arr[m]+"\">编辑</div><div class=\"delete\" data-value=\""+arr[m]+"\">删除</div></div></div></div>";
 						html += "</div>";
 
 					}
@@ -329,6 +329,7 @@ function onMessage(evt) {
 				//	console.log(html);
 				$("#lightList").empty();
 				$("#lightList").append(html);
+				caretLightClick();
 				$('#carousel-example2').carousel({
 					interval: 2000
 				})
@@ -415,6 +416,58 @@ function onMessage(evt) {
 
 }
 
+//轮播图倒三角点击
+function caretClick(){
+	$(".lunbo-oper-form span").on('click', function(e) {
+		
+		e.stopPropagation();
+		if($(this).hasClass('caret-down')){
+			$(this).removeClass('caret-down');
+		$(this).parent().find('.lunbo-operation').css('display','none');	
+		}else{
+			$(this).addClass('caret-down');
+			$(this).parent().find('.lunbo-operation').css('display','block');	
+	
+		}
+	});
+	editPreset();
+	deletePreset();
+}
+function caretLightClick(){
+	$(".light-more span").on('click', function(e) {
+		
+		e.stopPropagation();
+		if($(this).hasClass('caret-down')){
+			$(this).removeClass('caret-down');
+		$(this).parent().find('.lunbo-operation').css('display','none');	
+		}else{
+			$(this).addClass('caret-down');
+			$(this).parent().find('.lunbo-operation').css('display','block');	
+	
+		}
+	});
+	editPreset();
+	deletePreset();
+}
+function editPreset(){
+	$(".lunbo-operation .editor").on('click', function(e) {
+			e.stopPropagation();
+	window.location='update.html?keyword='+$(this).data('value');
+	});
+}
+function deletePreset(){
+	
+	$(".lunbo-operation .delete").on('click', function(e) {
+			e.stopPropagation();
+	tipsshow();	
+	//发送删除协议
+	
+	getAllPresetNameWithLabelCallback();
+	setTimeout(function() {
+			tipshide()
+		}, 1000);
+	});
+}
 function getUrlParam(name) {
 	var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)"); // 构造一个含有目标参数的正则表达式对象  
 	var r = window.location.search.substr(1).match(reg); // 匹配目标参数  
@@ -1248,7 +1301,7 @@ function renderExhibition(arr) {
 
 					html += "<div class=\"col-lg-2\">";
 					html += "<div class=\"lunbo-part-show\" data-open=\"0\"><img src=\"res/img/c" + Cindex[j] + ".png\" class=\"img-thumbnail lunbo_img\"/>";
-					html += "<h3>" + arr[j] + "</h3></div>";
+					html += "<h3>" + arr[j] + "</h3><div class=\"lunbo-oper-form\"><span class=\"caret\"></span><div class=\"lunbo-operation\"><div class=\"editor\" data-value=\""+arr[j]+"\">编辑</div><div class=\"delete\" data-value=\""+arr[j]+"\">删除</div></div></div></div>";
 					html += "</div>";
 				}
 			} else {
@@ -1257,7 +1310,7 @@ function renderExhibition(arr) {
 
 					html += "<div class=\"col-lg-2\">";
 					html += "<div class=\"lunbo-part-show\" data-open=\"0\"><img src=\"res/img/c" + Cindex[j] + ".png\" class=\"img-thumbnail lunbo_img\"/>";
-					html += "<h3>" + arr[j] + "</h3></div>";
+					html += "<h3>" + arr[j] + "</h3><div class=\"lunbo-oper-form\"><span class=\"caret\"></span><div class=\"lunbo-operation\"><div class=\"editor\" data-value=\""+arr[j]+"\">编辑</div><div class=\"delete\" data-value=\""+arr[j]+"\">删除</div></div></div></div>";
 					html += "</div>";
 				}
 			}
@@ -1297,7 +1350,7 @@ function renderExhibition(arr) {
 
 			html += "<div class=\"col-lg-2\">";
 			html += "<div class=\"lunbo-part-show\" data-open=\"0\"><img src=\"res/img/c" + Cindex[m] + ".png\" class=\"img-thumbnail lunbo_img\"/>";
-			html += "<h3>" + arr[m] + "</h3></div>";
+			html += "<h3>" + arr[m] + "</h3><div class=\"lunbo-oper-form\"><span class=\"caret\"></span><div class=\"lunbo-operation\"><div class=\"editor\" data-value=\""+arr[m]+"\">编辑</div><div class=\"delete\" data-value=\""+arr[m]+"\">删除</div></div></div></div>";
 			html += "</div>";
 
 		}
@@ -1308,6 +1361,7 @@ function renderExhibition(arr) {
 	//	console.log(html);
 	$("#canzanList").empty();
 	$("#canzanList").append(html);
+	caretClick();
 	$('#carousel-example').carousel({
 		interval: 2000
 	})
